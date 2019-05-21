@@ -37,7 +37,7 @@
       function(resp) {
         // something went wrong
         if (!resp.ok) {
-          error('Could not load CSS file');
+          error('Could not load JS file');
         }
         if (callback) {
           callback();
@@ -50,7 +50,7 @@
   function turnOn(tabId) {
     // error check
     if (!isUrlValid(storage.cssfile)) {
-      error('No CSS specified. Please add url in extension options (right-click on extension icon).');
+      error('No JS specified. Please add url in extension options (right-click on extension icon).');
       return;
     }
     // update state

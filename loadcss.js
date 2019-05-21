@@ -2,11 +2,10 @@
 
 // inject the css file into the head element
 function appendStyleNode(id, href) {
-    var cssNode = document.createElement('link');
-    cssNode.type = 'text/css';
-    cssNode.rel = 'stylesheet';
+    var cssNode = document.createElement('script');
+    cssNode.type = 'text/javascript';
     cssNode.id = id;
-    cssNode.href = href;
+    cssNode.src = href;
     document.getElementsByTagName('head')[0].appendChild(cssNode);
 }
 
@@ -19,7 +18,7 @@ function removeStyleNode(id) {
 // currently does nothing but alert if error
 function restoreStateCallback(resp) {
     if (!resp.ok) {
-        alert('Error re-injecting CSS on refresh. Try pushing the button again');
+        alert('Error re-injecting JS on refresh. Try pushing the button again');
     }
 }
 
