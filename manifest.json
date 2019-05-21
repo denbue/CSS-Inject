@@ -1,12 +1,12 @@
 {
   "manifest_version": 2,
-  "name": "JS Inject",
-  "version": "2",
-  "description": "Injects any hosted JS file into a any webpage",
-  "homepage_url": "https://github.com/denbue/CSS-Inject",
+  "name": "CSS/JS Inject",
+  "version": "3",
+  "description": "Injects any hosted CSS/JS file into a any webpage",
+  "homepage_url": "https://github.com/denbue/CSS-JS-Inject",
 
   "browser_action": {
-    "default_title": "JS Inject",
+    "default_title": "CSS/JS Inject",
     "default_icon": "images/icon128.png"
   },
 

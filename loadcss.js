@@ -1,12 +1,24 @@
 // All DOM manipulation must exist inside this "content script" in order to execute in the proper context of the page
 
-// inject the css file into the head element
+// inject the files into the head element
+// plus a timestamp cache buster.
 function appendStyleNode(id, href) {
-    var cssNode = document.createElement('script');
-    cssNode.type = 'text/javascript';
+
+    var cssNode = document.createElement('link');
+    cssNode.type = 'text/css';
+    cssNode.rel = 'stylesheet';
     cssNode.id = id;
-    cssNode.src = href;
+    cssNode.href = href+'style.css' + '?' + (new Date()).getTime();
     document.getElementsByTagName('head')[0].appendChild(cssNode);
+
+    var jsNode = document.createElement('script');
+    jsNode.type = 'text/javascript';
+    jsNode.id = id;
+    jsNode.src = href+'app.js' + '?' + (new Date()).getTime();
+    document.getElementsByTagName('head')[0].appendChild(jsNode);
+
+    
+    
 }
 
 // removes the css
@@ -18,7 +30,7 @@ function removeStyleNode(id) {
 // currently does nothing but alert if error
 function restoreStateCallback(resp) {
     if (!resp.ok) {
-        alert('Error re-injecting JS on refresh. Try pushing the button again');
+        alert('Error re-injecting file(s) on refresh. Try pushing the button again');
     }
 }
 
@@ -43,6 +55,7 @@ chrome.extension.onRequest.addListener(
 
     // depending on state value, injext/remove css
     function(req, sender, sendResponse) {
+
         req.state === 'on' 
             ? appendStyleNode(req.id, req.href)
             : removeStyleNode(req.id);

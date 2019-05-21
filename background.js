@@ -29,15 +29,14 @@
         // state of current tab
         state: tabState,
         // id of <link> element to inject
-        id: 'cssinject-injected-cssfile',
-        // css file path specified by user in options plus a
-        // timestamp cache buster.
-        href: storage.cssfile + '?' + (new Date()).getTime()
+        id: 'cssjsinject-injected-folder',
+        // css file path specified by user in options
+        href: storage.cssfile
       },
       function(resp) {
         // something went wrong
         if (!resp.ok) {
-          error('Could not load JS file');
+          error('Could not load folder');
         }
         if (callback) {
           callback();
@@ -48,11 +47,6 @@
 
   // Turn on the plugin badge and inject the css
   function turnOn(tabId) {
-    // error check
-    if (!isUrlValid(storage.cssfile)) {
-      error('No JS specified. Please add url in extension options (right-click on extension icon).');
-      return;
-    }
     // update state
     state[tabId] = 'on';
     // send request to content script
