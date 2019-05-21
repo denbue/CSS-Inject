@@ -50,7 +50,7 @@
   function turnOn(tabId) {
     // error check
     if (!isUrlValid(storage.cssfile)) {
-      error('No CSS url specified. Please specify url in extesion options.');
+      error('No CSS specified. Please add url in extension options (right-click on extension icon).');
       return;
     }
     // update state

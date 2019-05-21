@@ -19,7 +19,7 @@ function removeStyleNode(id) {
 // currently does nothing but alert if error
 function restoreStateCallback(resp) {
     if (!resp.ok) {
-        alert('Error re-injecting css on refresh. Try pushing the button again');
+        alert('Error re-injecting CSS on refresh. Try pushing the button again');
     }
 }
 

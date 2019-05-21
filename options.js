@@ -10,8 +10,8 @@
     if (!cssfileValue) {
         return;
     }
-    cssfileInput = doc.getElementById('cssfile');
-    cssfileInput.value = cssfileValue;
+    protofileInput = doc.getElementById('protoURL');
+    protofileInput.value + "/style.css" = cssfileValue;
   }
 
   function showStatus(msg) {
@@ -24,15 +24,15 @@
 
   // Saves options to localStorage.
   function saveOptions() {
-    var cssfileInput = doc.getElementById('cssfile');
-    storage.cssfile = cssfileInput.value;
+    var protofileInput = doc.getElementById('protoURL');
+    storage.cssfile = protofileInput.value + "/style.css";
     // Update status to let user know options were saved.
-    showStatus('Options Saved');
+    showStatus('Prototype Saved');
   }
 
   // Initialize
   function init() {
-    doc.getElementById('cssfile').focus();
+    doc.getElementById('protoURL').focus();
     restoreOptions();
     doc.getElementById('saveButton')
       .addEventListener('click', saveOptions);

@@ -8,22 +8,18 @@
 
 <body>
   <div id="header">
-    <img id="logo" src="images/icon128.png"/>
-    <h1>CSS Inject</h1>
+    <h1>Prototype and inject CSS/JS into any website</h1>
   </div>
   <div id="content">
     <div id="status"></div>
     <label for="cssfile">
-      <strong>CSS File to inject</strong>
-      <br/>(must be web-server hosted i.e. http://localhost/test.css)</label>
-    <br/>
-    <input type="text" id="cssfile" style="width: 300px;" />
+      Enter URL of a Prototype that you wish to inject:<br/>
+      </label>
     <br/>
     <br/>
-    <!--
-    <input type="checkbox" id="removeExistingCss" value="true" />
-    <label for="removeExistingCss">Remove all existing CSS? (experimental)</label>
-    -->
+    <input type="text" id="protoURL" placeholder="Prototype must be web-server hosted i.e. http://localhost/prototype" />
+    <br/>
+    <br/>
     <br/>
     <br/>
     <button id="saveButton">Save</button>

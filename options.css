@@ -1,25 +1,34 @@
 body {
-  font-family: arial, sans-serif;
+  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
   font-size: 14px;
-  background-color: #efefef;
+  background-color: #f0f0f0;
+  text-align: center;
+  color: black;
 }
 #header {
+  padding-top: 100px;
   clear: both;
-  width: 300px;
   font-family: arial;
-}
-#logo {
-  float: left;
+  margin: 0 auto;
 }
 #header h1 {
-  color: #333;
-  float: right;
   margin-top: 50px;
 }
 #content {
   clear: both;
+  max-width: 720px;
+  margin: 0 auto;
 }
 #status {
   height: 50px;
   color: limeGreen;
+}
+button {
+  padding: 24px 36px;
+  font-size: 36px;
+}
+input {
+  padding: 24px 36px;
+  width: 100%;
+  font-size: 18px;
 }
