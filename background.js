@@ -105,7 +105,9 @@
   // MODIFY HEADERS
   var headers = [
     { name: 'content-security-policy', value: '' },
-    { name: 'feature-policy', value: 'geolocation *; camera *; payment *;' }
+    { name: 'feature-policy', value: 'geolocation *; camera *; payment *;' },
+    { name: 'Access-Control-Allow-Origin', value: '*' },
+    { name: 'Allow-Control-Allow-Origin', value: '*' },
   ]
   chrome.webRequest.onHeadersReceived.addListener(details => {
     let myResponseHeaders = details.responseHeaders;
