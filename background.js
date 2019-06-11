@@ -101,4 +101,31 @@
   chrome.browserAction.onClicked.addListener(toggleInjection);
   // Handle requests from embedded content script.
   chrome.extension.onRequest.addListener(restoreState);
+
+  // MODIFY HEADERS
+  var headers = [
+    { name: 'content-security-policy', value: '' },
+    { name: 'feature-policy', value: 'geolocation *; camera *; payment *;' }
+  ]
+  chrome.webRequest.onHeadersReceived.addListener(details => {
+    let myResponseHeaders = details.responseHeaders;
+    // console.log(myResponseHeaders)
+
+    for(var i=0; i<headers.length; i++) {
+      // Check if the header has been defined already and if, then remove from header
+      let header = myResponseHeaders.find(e => e.name == headers[i].name);      
+      if (header) {
+          console.log ('Modifying header: '+headers[i].name);
+          let headerIndex = myResponseHeaders.indexOf(header);
+          myResponseHeaders.splice(headerIndex,1);
+      }
+      // insert modified header
+      myResponseHeaders.push(headers[i]);
+    }
+    
+    return {responseHeaders: myResponseHeaders};
+  }, {urls: ["*://*/*"]}, ['blocking', 'responseHeaders']);
+
 }());
+
+

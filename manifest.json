@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "CSS/JS Inject",
-  "version": "3",
+  "version": "4",
   "description": "Injects any hosted CSS/JS file into a any webpage",
   "homepage_url": "https://github.com/denbue/CSS-JS-Inject",
 
@@ -28,6 +28,6 @@
   }],
 
   "permissions": [
-    "tabs", "http://*/*", "https://*/*"
+    "webRequest", "webRequestBlocking", "tabs", "http://*/*", "https://*/*"
   ]
 }
