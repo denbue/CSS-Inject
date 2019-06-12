@@ -6,6 +6,14 @@
   // TODO: Shortcut keys
   // TODO: Optionally remove ALL existing CSS?
 
+  // global object to store headers
+  var headers = [
+    { name: 'content-security-policy', value: '' },
+    { name: 'feature-policy', value: 'geolocation *; camera *; payment *;' },
+    { name: 'Access-Control-Allow-Origin', value: '*' },
+    { name: 'Allow-Control-Allow-Origin', value: '*' },
+  ]
+
   // global object to track on/off state of each tab
   var state = {},
       storage = window.localStorage;
@@ -47,24 +55,34 @@
 
   // Turn on the plugin badge and inject the css
   function turnOn(tabId) {
-    // update state
-    state[tabId] = 'on';
     // send request to content script
     sendInjectionRequest(tabId, state[tabId], function() {
       // update badge
       chrome.browserAction.setBadgeText({text: 'on', tabId: tabId});
+      // reload tab
+      //chrome.tabs.update(tabId);
     });
+    // modify headers
+    modifyHeaders(tabId, 'modify')
+    // reload tab when enabling for first time
+    if (state[tabId] != 'on') chrome.tabs.reload(tabId);
+    // update state
+    state[tabId] = 'on';
   }
 
   // Turn off the plugin badge
   function turnOff(tabId) {
-    // just delete the property if it exists
-    delete state[tabId];
     // send request to content script
     sendInjectionRequest(tabId, 'off', function() {
       // update badge
       chrome.browserAction.setBadgeText({text: '', tabId: tabId});
     });
+    // restore headers
+    modifyHeaders(tabId, 'restore')
+    // reload tab when enabling for first time
+    if (state[tabId] == 'on') chrome.tabs.reload(tabId);
+    // just delete the property if it exists
+    delete state[tabId];
   }
 
   // toggles css injection on/off
@@ -94,6 +112,45 @@
     });
   }
 
+   // modify headers
+   function modifyHeaders(tab, action) {
+
+    chrome.webRequest.onHeadersReceived.addListener(details => {
+      let myResponseHeaders = details.responseHeaders;
+      // console.log(myResponseHeaders)
+  
+      for(var i=0; i<headers.length; i++) {
+        // Check if the header has been defined already and if, then replace from header
+        let header = myResponseHeaders.find(e => e.name == headers[i].name);      
+        if (header) {
+            let headerIndex = myResponseHeaders.indexOf(header);
+            // Save header value in localStorage for restoring
+            storage[tab+'-'+headers[i].name] = myResponseHeaders[headerIndex].value;
+            // Remove to replace it later
+            myResponseHeaders.splice(headerIndex,1);
+
+            if (action === 'modify') {
+              // insert modified header
+              // console.log ('Modifying header in '+tab+': '+headers[i].name);
+              myResponseHeaders.push(headers[i]);
+            }
+            else if (action === 'restore') {
+              // restore header from localstorage
+              // console.log ('Restoring header in '+tab+': '+headers[i].name);
+              myResponseHeaders.push({
+                'name': headers[i].name,
+                'value': storage[tab+'-'+headers[i].name]
+              });
+              storage.removeItem(tab+'-'+headers[i].name)
+            }
+        }     
+      }
+      return {responseHeaders: myResponseHeaders};
+
+    }, {urls: ["*://*/*"], tabId: tab}, ['blocking', 'responseHeaders']);
+
+   }
+
   // EVENT HANDLERS
 
   // User clicked the activate action button,
@@ -102,32 +159,6 @@
   // Handle requests from embedded content script.
   chrome.extension.onRequest.addListener(restoreState);
 
-  // MODIFY HEADERS
-  var headers = [
-    { name: 'content-security-policy', value: '' },
-    { name: 'feature-policy', value: 'geolocation *; camera *; payment *;' },
-    { name: 'Access-Control-Allow-Origin', value: '*' },
-    { name: 'Allow-Control-Allow-Origin', value: '*' },
-  ]
-  chrome.webRequest.onHeadersReceived.addListener(details => {
-    let myResponseHeaders = details.responseHeaders;
-    // console.log(myResponseHeaders)
-
-    for(var i=0; i<headers.length; i++) {
-      // Check if the header has been defined already and if, then remove from header
-      let header = myResponseHeaders.find(e => e.name == headers[i].name);      
-      if (header) {
-          console.log ('Modifying header: '+headers[i].name);
-          let headerIndex = myResponseHeaders.indexOf(header);
-          myResponseHeaders.splice(headerIndex,1);
-      }
-      // insert modified header
-      myResponseHeaders.push(headers[i]);
-    }
-    
-    return {responseHeaders: myResponseHeaders};
-  }, {urls: ["*://*/*"]}, ['blocking', 'responseHeaders']);
+ 
 
 }());
-
-
