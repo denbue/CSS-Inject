@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "CSS/JS Inject",
-  "version": "6",
+  "version": "6.1",
   "description": "Injects any hosted CSS/JS file into a any webpage and modifies the headers to allow for full prototyping power.",
   "homepage_url": "https://github.com/denbue/JS-CSS-Inject",
 
