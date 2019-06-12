@@ -10,8 +10,7 @@
   var headers = [
     { name: 'content-security-policy', value: '' },
     { name: 'feature-policy', value: 'geolocation *; camera *; payment *;' },
-    { name: 'Access-Control-Allow-Origin', value: '*' },
-    { name: 'Allow-Control-Allow-Origin', value: '*' },
+    { name: 'allow-control-allow-origin', value: '*' },
   ]
 
   // global object to track on/off state of each tab
@@ -121,7 +120,7 @@
   
       for(var i=0; i<headers.length; i++) {
         // Check if the header has been defined already and if, then replace from header
-        let header = myResponseHeaders.find(e => e.name == headers[i].name);      
+        let header = myResponseHeaders.find(e => e.name.toLowerCase() == headers[i].name);      
         if (header) {
             let headerIndex = myResponseHeaders.indexOf(header);
             // Save header value in localStorage for restoring
@@ -143,9 +142,23 @@
               });
               storage.removeItem(tab+'-'+headers[i].name)
             }
-        }     
+        }
       }
+      // add 'Access-Control-Allow-Origin' manually for all headers
+      let accessControl = myResponseHeaders.find(e => e.name.toLowerCase() == 'access-control-allow-origin');      
+      if (accessControl) {
+          let accessControlIndex = myResponseHeaders.indexOf(accessControl);
+          // Remove to replace it later
+          myResponseHeaders.splice(accessControlIndex,1);
+      }
+      myResponseHeaders.push({
+        'name': 'access-control-allow-origin',
+        'value': '*'
+      });
+      //console.log(details.url, myResponseHeaders)
+      // return headers
       return {responseHeaders: myResponseHeaders};
+      
 
     }, {urls: ["*://*/*"], tabId: tab}, ['blocking', 'responseHeaders']);
 
