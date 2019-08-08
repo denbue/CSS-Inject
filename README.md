@@ -15,3 +15,6 @@ Currently disabled header policies:
 - Content-Security-Policy
 - Feature-Policy
 
+
+Download the extension: https://chrome.google.com/webstore/detail/fdgdeaiajeafamlgajlpgbejadaegepj/
+
