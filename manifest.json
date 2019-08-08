@@ -1,12 +1,12 @@
 {
   "manifest_version": 2,
-  "name": "CSS/JS Inject",
-  "version": "6.1",
-  "description": "Injects any hosted CSS/JS file into a any webpage and modifies the headers to allow for full prototyping power.",
-  "homepage_url": "https://github.com/denbue/JS-CSS-Inject",
+  "name": "Prototype - Inject new code in your websites",
+  "version": "7",
+  "description": "Test your ideas in real-time: Use Prototype to inject any stylesheet or javascript into your website.",
+  "homepage_url": "https://github.com/denbue/Prototype",
 
   "browser_action": {
-    "default_title": "CSS/JS Inject",
+    "default_title": "Prototype",
     "default_icon": "images/icon128.png"
   },
 
@@ -24,7 +24,7 @@
 
   "content_scripts": [{
     "matches": ["http://*/*", "https://*/*"],
-    "js": ["loadcss.js"]
+    "js": ["load.js"]
   }],
 
   "permissions": [

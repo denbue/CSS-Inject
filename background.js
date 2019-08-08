@@ -1,10 +1,5 @@
-/*global chrome: true*/
-
 (function () {
   'use strict';
-
-  // TODO: Shortcut keys
-  // TODO: Optionally remove ALL existing CSS?
 
   // global object to store headers
   var headers = [
@@ -22,12 +17,6 @@
     window.alert('ERROR: ' + msg);
   }
 
-  // Checks if the supplied url is valid
-  // TODO: make this more robust
-  function isUrlValid(url) {
-    return (url && url.length > 3) ? true : false;
-  }
-
   // send 'load/unload' request to the embedded content script
   function sendInjectionRequest(tabId, tabState, callback) {
     chrome.tabs.sendRequest(
@@ -37,8 +26,8 @@
         state: tabState,
         // id of <link> element to inject
         id: 'cssjsinject-injected-folder',
-        // css file path specified by user in options
-        href: storage.cssfile
+        // file path specified by user in options
+        href: storage.url
       },
       function(resp) {
         // something went wrong
@@ -52,7 +41,7 @@
     );
   }
 
-  // Turn on the plugin badge and inject the css
+  // Turn on the plugin badge and inject the file
   function turnOn(tabId) {
     // send request to content script
     sendInjectionRequest(tabId, state[tabId], function() {
@@ -84,7 +73,7 @@
     delete state[tabId];
   }
 
-  // toggles css injection on/off
+  // toggles injection on/off
   function toggleInjection(tab) {
     // toggle state on click
     if (state[tab.id] === 'on') {

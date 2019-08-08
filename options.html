@@ -2,29 +2,58 @@
 <html>
 
 <head>
-  <title>JS Inject Options</title>
+  <meta charset="UTF-8">
+  <title>Options</title>
   <link href="options.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
-  <div id="header">
-    <h1>Inject CSS and JS into any website</h1>
+  <div class="container header">
+    <img src="images/icon.svg">
+    <h1><strong>Prototype</strong> &mdash; Test your ideas in real-time</h1>
   </div>
-  <div id="content">
-    <div id="status"></div>
-    <label for="cssfile">
-      Enter folder that contains a CSS file named "style.css" and/or a JS file named "app.js"<br/>
-      </label>
-    <br/>
-    <br/>
-    <input type="text" id="cssfile" placeholder="Folder must be web-server hosted i.e. http://localhost/folder" />
-    <br/>
-    <br/>
-    <br/>
-    <br/>
-    <button id="saveButton">Save</button>
+  <div class="container content">
+    <p>Use Prototype to inject any stylesheet or javascript into your website. The files need to be hosted on a server (e.g. via <a href="https://pages.github.com/">Github Pages</a>) or via <code>localhost</code>.</p>
+    <div>
+      <p><span id="savedOptionsStatus">1</span><strong>Enter a folder URL that contains:</strong></p>
+      <ul>
+        <li>a CSS file named <code>style.css</code></li>
+        <li>a JS file named <code>app.js</code></li>
+      </ul>
+    </div>
+    <div>
+        <p><span>2</span><strong>Activate the extension:</strong></p>
+        <ul>
+          <li>Select the tab you want to inject the code</li>
+          <li>Click on the <img width="12" height="12" src="images/icon.svg"> icon to activate the extension. No worries, your options are saved even when you close the browser.</li>
+        </ul>
+      </div>
+    
   </div>
+  <div class="container full url">
+    <div class="container form">
+      <label for="url">Link to a folder</label>
+      <input type="text" id="url" placeholder="Example: http://localhost/prototype/" />
+      <button id="saveButton">Save</button>
+    </div>
+    <ul id="error" class="container"></ul>
+  </div>
+
+  <div class="container full footer">
+    <div class="container">
+      <div class="copyright">
+          <img src="images/icon.svg" style="margin-right: 10px">
+          <span><strong>Prototype</strong> &mdash; A Chrome extension by Dennis Bücker</span>
+      </div>
+      <div class="links">
+        <a href="https://github.com/denbue/Prototype/issues">Found a bug?</a>
+        <a href="https://github.com/denbue/Prototype">More information</a>
+        <a href="mailto:mail@dennisbucker.com">Contact</a>
+      </div>
+    </div>
+  </div>
+
+
   <script src="options.js"></script>
 </body>
-
 </html>

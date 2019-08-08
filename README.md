@@ -1,8 +1,17 @@
-# JS-CSS-Inject
-Chrome Extension that allows injection of any hosted JS/CSS file into a webpage
+# Prototype &mdash; Test your ideas in real-time
+Test your ideas in real-time: Use Prototype to inject any stylesheet or javascript into your website.
+Prototyper injects any hosted stylesheets (CSS) or javascript (JS) file into any webpage. It also modifies the headers to allow for full prototyping power.
+You can use the extension for your own prototyping or to share prototypes. The extension saves your options even when you restart the browser or change the code.
 
-- Install the extension (or load unpacked)
-- Press right-click on the extension icon and select "Options"
-- Paste a URL to a folder containing a "style.css" and/or "app.js" and select "Save"
+After installing the extension (or loading unpacked), right-click on the extension icon and select "Options".
 
-Now go to your website and click on the extension icon to activate it.
+Currently supported feature policies:
+- geolocation *
+- camera *
+- payment *
+
+Currently disabled header policies:
+- Access-Control-Allow-Origin
+- Content-Security-Policy
+- Feature-Policy
+
