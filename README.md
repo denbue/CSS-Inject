@@ -1,20 +1,27 @@
-# Prototype &mdash; Test your ideas in real-time
-Test your ideas in real-time: Use Prototype to inject any stylesheet or javascript into your website.
-Prototyper injects any hosted stylesheets (CSS) or javascript (JS) file into any webpage. It also modifies the headers to allow for full prototyping power.
-You can use the extension for your own prototyping or to share prototypes. The extension saves your options even when you restart the browser or change the code.
+![Logo](https://raw.githubusercontent.com/denbue/Prototype/master/images/icon128.png)
 
-After installing the extension (or loading unpacked), right-click on the extension icon and select "Options".
+# Prototype &mdash; A tool to test your ideas in real-time
+Prototype is a Chrome extension to inject any hosted stylesheets (CSS) or Javascript (JS) file into any webpage. 
 
-Currently supported feature policies:
-- geolocation *
-- camera *
-- payment *
+## Installation
+After installing the extension from the Chrome Extension Gallery (or loading unpacked from source), right-click on the extension icon and select "Options".
 
-Currently disabled header policies:
-- Access-Control-Allow-Origin
-- Content-Security-Policy
-- Feature-Policy
+Install the extension: https://chrome.google.com/webstore/detail/fdgdeaiajeafamlgajlpgbejadaegepj/
+
+## Features
+- Specify any hosted CSS or JS file to inject (local files must be hosted under `http://localhost/` - security restriction of Chrome)
+- It modifies HTTP headers for full prototyping power.
+- You can use the extension for your own prototyping or for others to test your prototype.
+- The extension saves your options even when you restart the browser or change the code.
 
 
-Download the extension: https://chrome.google.com/webstore/detail/fdgdeaiajeafamlgajlpgbejadaegepj/
 
+
+**Currently modified header policies:**
+- Disabled `Access-Control-Allow-Origin` and `Content-Security-Policy` allows for injecting cross-origin scripts.
+- Explicitly enabled `Feature-Policy` modules allow to include device hardware. [List of supported feature policies](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Feature-Policy)
+
+
+
+
+A special thanks goes to [sym3tri](https://github.com/sym3tri/CSS-Inject), the original creator of CSS-Inject

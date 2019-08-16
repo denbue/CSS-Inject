@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Prototype - Inject new code in your websites",
-  "version": "7",
+  "version": "7.1",
   "description": "Test your ideas in real-time: Use Prototype to inject any stylesheet or javascript into your website.",
   "homepage_url": "https://github.com/denbue/Prototype",
 

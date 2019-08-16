@@ -8,13 +8,13 @@ function appendStyleNode(id, href) {
     cssNode.type = 'text/css';
     cssNode.rel = 'stylesheet';
     cssNode.id = id;
-    cssNode.href = href+'style.css' + '?' + (new Date()).getTime();
+    cssNode.href = href+'prototype.css' + '?' + (new Date()).getTime();
     document.getElementsByTagName('head')[0].appendChild(cssNode);
 
     var jsNode = document.createElement('script');
     jsNode.type = 'text/javascript';
     jsNode.id = id;
-    jsNode.src = href+'app.js' + '?' + (new Date()).getTime();
+    jsNode.src = href+'prototype.js' + '?' + (new Date()).getTime();
     document.getElementsByTagName('head')[0].appendChild(jsNode);
 
     

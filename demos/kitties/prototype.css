@@ -1,0 +1,20 @@
+#animate{
+  opacity: 1;
+  animation: new-item-animation 5s linear forwards;
+  height: auto;
+  width: 200px;
+  margin: 0 auto;
+  display: block;
+  z-index: 1;
+  position: relative;
+}
+
+@keyframes new-item-animation {
+  from {
+      transform: translateY(0);
+}
+
+  to {
+      transform: translateY(400px);
+  }
+}

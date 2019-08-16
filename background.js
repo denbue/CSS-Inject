@@ -4,7 +4,7 @@
   // global object to store headers
   var headers = [
     { name: 'content-security-policy', value: '' },
-    { name: 'feature-policy', value: 'geolocation *; camera *; payment *;' },
+    { name: 'feature-policy', value: 'autoplay *; ambient-light-sensor *; accelerometer *; camera *; display-capture *; document-domain *; encrypted-media *; fullscreen *; geolocation *; gyroscope *; layout-animations *; legacy-image-formats *; magnetometer *; microphone *; midi *; oversized-images *; payment *; picture-in-picture *; speaker *; sync-xhr *; unoptimized-images *; usb *; vibrate *; wake-lock *; webauthn *; vr *; ' },
     { name: 'allow-control-allow-origin', value: '*' },
   ]
 
